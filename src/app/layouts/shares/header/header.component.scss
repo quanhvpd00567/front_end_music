@@ -6,11 +6,15 @@
     line-height: 32px;
     color: $color_white;
     height: 32px;
-    nav{
-        height: 32px;
-    };
-    .navbar-brand, a{
-        color: $color_white;
+   li{
+        display: inline-block;
+        padding-right: 30px;
+        font-weight: 500;
         font-size: 14px;
-    }
+        line-height: 14px;
+       a{
+           color: $color_white;
+           text-decoration: none;
+       }
+   }
 }

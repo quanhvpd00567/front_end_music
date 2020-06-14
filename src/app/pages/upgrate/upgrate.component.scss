@@ -1,0 +1,29 @@
+@import './../../../assets/css/variable';
+.img-file{
+    margin-top: 60px;
+    margin-bottom: 33px;
+}
+.lb-link{
+    margin-bottom: 15px;;
+}
+.gr-buttons{
+    button{
+        width: 200px;
+        border: none;
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 40px;
+        font-family: Helvetica Neue;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        &:first-child{
+            background-color: $bg_header;
+        };
+        &:last-child{
+            background-color: $bg_gray;
+        }
+    }
+   
+}

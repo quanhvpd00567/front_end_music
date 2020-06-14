@@ -1,6 +1,6 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "./assets/css/variable";
-
+@import "~font-awesome/css/font-awesome.min.css";
 nav{
     // background-color: $bg_header;
 }
@@ -8,5 +8,6 @@ nav{
 :host {
     body{
         font-family: SF Pro Display;
+        
     }
 }
