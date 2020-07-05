@@ -14,10 +14,16 @@
                     <a class="nav-link" routerLinkActive="active-link" routerLink="">Get link</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLinkActive]="'active-link'" routerLink="upgrate" >Nâng cấp</a>
+                    <a class="nav-link" [routerLinkActive]="'active-link'" routerLink="/upgrate" >Nâng cấp</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLinkActive]="'active-link'" routerLink="notification" >T notify</a>
+                    <a class="nav-link" [routerLinkActive]="'active-link'" routerLink="/upgrate" >Hướng dẫn</a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser">
+                    <a href="" class="nav-link">{{currentUser.email}}</a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser">
+                    <a href="" class="nav-link">{{currentUser.totalCoin}}</a>
                 </li>
             </ul>
         </div>

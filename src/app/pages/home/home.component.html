@@ -5,8 +5,8 @@
             Get graphic Vectors, Stock Photos, PSD and Icons 
         </div>
         <div class="input-group" id="i-get-url">
-            <input type="text" class="form-control">
-            <div class="input-group-append">
+            <input type="text" class="form-control" [(ngModel)]="url">
+            <div class="input-group-append" (click)="onGetLink()">
               <span class="input-group-text" id="basic-addon2">
                   Get link 
                     <i class="fa fa-paper-plane" aria-hidden="true"></i>
@@ -15,3 +15,4 @@
           </div>
     </div>
 </div>
+

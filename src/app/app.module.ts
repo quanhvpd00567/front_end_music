@@ -11,6 +11,15 @@ import { MenuComponent } from './layouts/shares/menu/menu.component';
 import { UpgrateComponent } from './pages/upgrate/upgrate.component';
 import { NotificationComponent } from './pages/notification/notification.component';
 import { RouterModule } from '@angular/router';
+import { DefaultComponent } from './layouts/default/default.component';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/login/login.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiService } from './services/api.service';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
+import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,14 +30,26 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     MenuComponent,
     UpgrateComponent,
-    NotificationComponent
+    NotificationComponent,
+    DefaultComponent,
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+    NgbToastModule
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   exports: [RouterModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
