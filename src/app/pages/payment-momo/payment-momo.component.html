@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="container text-center">
+        <h2>Your select payment</h2>
+        <div class="text-left">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" (change)="handleChange(1)"checked>
+                <label class="form-check-label" for="exampleRadios1">
+                Goi 20,000
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" (change)="handleChange(2)">
+                <label class="form-check-label" for="exampleRadios2">
+                    Goi 50,000
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" (change)="handleChange(3)">
+                <label class="form-check-label" for="exampleRadios3">
+                    Goi vip (500,000)
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" (change)="handleChange(4)" id="exampleRadios4" value="v3">
+                <label class="form-check-label" for="exampleRadios4">
+                    Other
+                </label>
+            </div>
+            <div class="group-form" *ngIf="isOther">
+                <input class="form-control" [(ngModel)]="amount" (ngModelChange)="onChangeAmountOther($event)" style="width: 40%;" type="text" name="exampleRadios" id="exampleRadios3">
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onPaymentMomo()">Payment now</button>
+            </div>
+        </div>
+    </div>
+</div>

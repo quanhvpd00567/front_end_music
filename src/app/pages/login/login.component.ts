@@ -11,8 +11,8 @@ import { first } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
 
-  email: string = 'quankun@gmail.com'
-  password: string = '1234567'
+  email: string = 'quanhv1@gmail.com'
+  password: string = '10061994'
   returnUrl: string = '';
   constructor(
     private authenService: AuthenticationService,
@@ -29,17 +29,6 @@ export class LoginComponent implements OnInit {
     this.authenService.login(this.email, this.password).pipe(first()).subscribe(data => {
       this.router.navigate([this.returnUrl])
     })
-    
-    // .pipe(first())
-    // .subscribe(
-    //     data => {
-    //         this.router.navigate([this.returnUrl]);
-    //     },
-    //     error => {
-    //         this.alertService.error(error);
-    //         this.loading = false;
-    //     });
-    
   }
 
 }

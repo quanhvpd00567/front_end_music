@@ -1,54 +1,68 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, map } from 'rxjs/operators';
 
 import { AuthenticationService } from './../services/authentication.service';
-import { HTTPStatusCode, ApiErrorCode } from './constant.enum';
+import { HTTPStatusCode, ApiErrorCode, Messages } from './constant.enum';
 import { ApiResponse } from '../responses/ApiResponse';
-import { AppError } from './app-error';
+import { ToastService } from '../services/toast.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthenticationService) {}
+    constructor(private authenticationService: AuthenticationService, private toastService: ToastService) {}
 
-    // intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //     return next.handle(request).pipe(catchError(err => {
-    //         if (err.status === 401) {
-    //             // auto logout if 401 response returned from api
-    //             this.authenticationService.logout();
-    //             location.reload(true);
-    //         }
-            
-    //         const error = err.error.message || err.statusText;
-    //         return throwError(error);
-    //     }))
-    // }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		return next.handle(request)
-            .pipe(
-                retry(1),
-                catchError((response: HttpErrorResponse) => {
-					let body = <ApiResponse<any>>response.error;
-					switch (response.status) {
-						case HTTPStatusCode.Ok:
-							switch (body!.codeError) {
-								case ApiErrorCode.ModelStateError:
-									throw new AppError(body!.messageError, body!.codeError);
-								default:
-									throw new AppError(body!.messageError);
-                            }
-                        case HTTPStatusCode.Unauthorized:
-                            this.authenticationService.logout();
-                            location.reload(true);
-						default: {
-							if (body instanceof ApiResponse) {
-								throw new AppError(body!.messageError);
-							}
-							throw body;
-						}
-					}
-                })
-            )
+        return next.handle(request).pipe(
+            map((event: HttpEvent<any>) => {
+                if (event instanceof HttpResponse) {
+                    let body = <ApiResponse<any>>event.body
+                    if (body!.errorCode == 'S001') {
+                        this.toastService.show(body!.messageCode, {
+                            classname: 'bg-success text-white',
+                            delay: 5000 ,
+                            autohide: true,
+                            headertext: 'Notification'
+                        });
+                    }
+                }
+                return event;
+            }),
+
+            catchError((error: HttpErrorResponse) => {
+                let body = <ApiResponse<any>>error.error;
+                switch (error.status) {
+                    case HTTPStatusCode.bad_request:
+                        this.toastService.show(Messages[body!.errorCode], {
+                            classname: 'bg-danger text-white',
+                            delay: 5000 ,
+                            autohide: true,
+                            headertext: 'Notification'
+                        });
+                        break
+                    case HTTPStatusCode.Unauthorized:
+                        this.toastService.show(body!.messageCode, {
+                            classname: 'bg-danger text-white',
+                            delay: 10000 ,
+                            autohide: true,
+                            headertext: body!.errorCode
+                        });
+                        this.authenticationService.logout();
+                        location.reload(true)
+                        break
+                    case 422:
+                        break
+                    default:
+                        this.toastService.show(Messages.E000, {
+                            classname: 'bg-danger text-white',
+                            delay: 5000 ,
+                            autohide: true,
+                            headertext: 'Notification'
+                        });
+                        break
+                }
+                return throwError(error)
+            })
+        )
     }
 }

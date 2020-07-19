@@ -20,6 +20,14 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastComponent } from './components/toast/toast.component';
+import { ToastService } from './services/toast.service';
+import { HistoriesComponent } from './pages/histories/histories.component';
+import { DotdotdotPipe } from './pipes/dotdotdot.pipe';
+import { PaymentMomoComponent } from './pages/payment-momo/payment-momo.component';
+import { PaymentMomoConfirmComponent } from './pages/payment-momo-confirm/payment-momo-confirm.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ConfirmRegisterComponent } from './pages/confirm-register/confirm-register.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +41,14 @@ import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
     NotificationComponent,
     DefaultComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ToastComponent,
+    HistoriesComponent,
+    DotdotdotPipe,
+    PaymentMomoComponent,
+    PaymentMomoConfirmComponent,
+    RegisterComponent,
+    ConfirmRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +59,7 @@ import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
     NgbToastModule
   ],
   providers: [
-    ApiService,
+    ApiService ,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

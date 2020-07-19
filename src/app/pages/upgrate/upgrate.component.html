@@ -1,9 +1,11 @@
 <div class="row">
     <div class="container text-center">
         <img class="img-file" src="./../../../assets/images/logo.png" alt="">
-        <div class="lb-link">{{file?.fileName}} - {{file?.codeFile}}</div>
+        <div class="lb-link">{{file?.urlClone ? ((file?.urlClone | dotdotdot:20) + ' - ') : ''}}{{file?.code}}</div>
         <div class="lb-notify" *ngIf="isShowNotifyWaiting">
-          Hệ thống đang get file, thường sẽ không quá 10 phút, bạn hãy kiểm tra phần <b>lịch sử</b> để tải file về
+          Hệ thống đang get file, thường sẽ không quá 10 phút, bạn hãy kiểm tra phần 
+          <a style="font-weight: bold;" routerLink="/user/history-get" >lịch sử</a>
+          để tải file về
         </div>
         <div class="gr-buttons">
           <button type="button" class="btn btn-primary" *ngIf="!isDownload" [disabled]="isDownloading" (click)="onDownload()">

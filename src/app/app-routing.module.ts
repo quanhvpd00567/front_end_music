@@ -7,6 +7,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
+import { HistoriesComponent } from './pages/histories/histories.component';
+import { PaymentMomoComponent } from './pages/payment-momo/payment-momo.component';
+import { PaymentMomoConfirmComponent } from './pages/payment-momo-confirm/payment-momo-confirm.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ConfirmRegisterComponent } from './pages/confirm-register/confirm-register.component';
 
 
 const routes: Routes = [
@@ -14,9 +19,12 @@ const routes: Routes = [
     path: 'user', 
     component: DefaultComponent,
     children: [
-      { path: 'download/:id', component: UpgrateComponent },
+      { path: 'history/:id', component: UpgrateComponent },
       { path: 'notification', component: NotificationComponent },
+      { path: 'history-get', component: HistoriesComponent },
+      { path: 'payment-momo', component: PaymentMomoComponent},
       { path: 'error-404', component: NotFoundComponent },
+      { path: 'payment/momo-confirm', component: PaymentMomoConfirmComponent }
     ],
     canActivate: [AuthGuard]
   },
@@ -30,7 +38,19 @@ const routes: Routes = [
   {
     path: 'login', component: LoginComponent
   },
-  
+  {
+    path: 'register', component: RegisterComponent
+  },
+  {
+    path: 'register',
+    component: DefaultComponent,
+    children: [
+      {
+        path: 'confirm', component: ConfirmRegisterComponent
+      },
+    ]
+  },
+
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

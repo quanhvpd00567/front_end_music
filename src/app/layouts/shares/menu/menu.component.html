@@ -16,14 +16,29 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLinkActive]="'active-link'" routerLink="/upgrate" >Nâng cấp</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" [routerLinkActive]="'active-link'" routerLink="/upgrate" >Hướng dẫn</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="'active-link'" routerLink="/user/payment-momo" >Momo payment</a>
+                </li>
+                <li class="nav-item" *ngIf="!currentUser">
+                    <a class="nav-link" [routerLinkActive]="'active-link'" routerLink="/login" >Login</a>
+                </li>
+                <li class="nav-item" *ngIf="!currentUser">
+                    <a class="nav-link" [routerLinkActive]="'active-link'" routerLink="/register" >Register</a>
                 </li>
                 <li class="nav-item" *ngIf="currentUser">
                     <a href="" class="nav-link">{{currentUser.email}}</a>
                 </li>
                 <li class="nav-item" *ngIf="currentUser">
                     <a href="" class="nav-link">{{currentUser.totalCoin}}</a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser">
+                    <a routerLink="/user/history-get" class="nav-link">History</a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser">
+                    <a href="javascript:void(0)" (click)="onSignOut()" class="nav-link">Sign out</a>
                 </li>
             </ul>
         </div>

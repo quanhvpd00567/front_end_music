@@ -3,4 +3,5 @@ export class User {
     email: string;
     totalCoin: number = 0;
     access_token: string;
+    isSingOut: boolean = false;
 }
