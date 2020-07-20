@@ -6,7 +6,7 @@
 export const environment = {
   production: true,
   development: false,
-  base_url_api: 'https/cms.framer.vn/api/v1'
+  base_url_api: 'https://cms.framer.vn/api/v1'
 };
 
 /*
