@@ -15,19 +15,19 @@ export class UserService {
   constructor(private apiService: ApiService, private authenticationService: AuthenticationService) { }
 
   public refresh(){
-    this.apiService.get<User>(`${environment.base_url_api}/refresh-user`).subscribe(userRefresh => {
-      this.authenticationService.currentUser.subscribe(user => {
-        user.totalCoin = userRefresh.totalCoin
-        localStorage.setItem('currentUser', JSON.stringify(user))
-      });
-    })
+    // this.apiService.get<User>(`${environment.base_url_api}/refresh-user`).subscribe(userRefresh => {
+    //   this.authenticationService.currentUser.subscribe(user => {
+    //     user.totalCoin = userRefresh.totalCoin
+    //     localStorage.setItem('currentUser', JSON.stringify(user))
+    //   });
+    // })
   }
 
   public signOut() {
-    return this.apiService.post<User>(`${environment.base_url_api}/sign-out`, {});
+    // return this.apiService.post<User>(`${environment.base_url_api}/sign-out`, {});
   }
 
   public signUp(data) {
-    return this.apiService.post<UserRegister>(`${environment.base_url_api}/register`, data)
+    // return this.apiService.post<UserRegister>(`${environment.base_url_api}/register`, data)
   }
 }

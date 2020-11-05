@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ApiResponse } from './../responses/ApiResponse';
+import { ResponseApi } from './../responses/ResponseApi';
 import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ApiService {
@@ -12,10 +14,9 @@ export class ApiService {
     }
 
     // Get method
-    public get<T>(url: string, params?: any): Observable<T> {
-        return this.httpClient
-            .get(url, { params: params })
-            .pipe(map(response => (<ApiResponse<T>>response).result));
+
+    public get(url: string, params?: any) {
+        return this.httpClient.get<ResponseApi>(url).toPromise()
     }
 
     // Post method

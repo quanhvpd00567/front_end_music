@@ -5,13 +5,36 @@
             Get graphic Vectors, Stock Photos, PSD and Icons 
         </div>
         <div class="input-group" id="i-get-url">
-            <input type="text" class="form-control" [(ngModel)]="url">
             <div class="input-group-append" (click)="onGetLink()">
               <span class="input-group-text" id="basic-addon2">
                   Get link 
                     <i class="fa fa-paper-plane" aria-hidden="true"></i>
               </span>
             </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>title</th>
+                  <th>image</th>
+                </tr>
+              </thead>
+              <tbody>
+                <audio *ngIf="url != null" autoplay="" id="audio_xx" loop controlsList="nodownload" crossorigin="anonymous" controls="" style="width:100%; height: 100%">
+                  <source src="{{url}}" type="audio/mpeg">
+                </audio>
+                <tr *ngFor="let song of songs">
+                  <td>{{song.id}}</td>
+                  <td>{{song.title | dotdotdot:[20]}}</td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+           
+
           </div>
     </div>
 </div>

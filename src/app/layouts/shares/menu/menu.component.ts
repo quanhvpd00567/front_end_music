@@ -28,11 +28,11 @@ export class MenuComponent implements OnInit {
   }
 
   onSignOut() {
-    this.userService.signOut().subscribe((user: User) => {
-      if (user.isSingOut) {
-        this.authenticationService.logout()
-        this.router.navigate(['/'])
-      }
-    })
+    // this.userService.signOut().subscribe((user: User) => {
+    //   if (user.isSingOut) {
+    //     this.authenticationService.logout()
+    //     this.router.navigate(['/'])
+    //   }
+    // })
   }
 }

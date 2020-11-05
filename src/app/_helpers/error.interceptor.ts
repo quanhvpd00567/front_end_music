@@ -7,6 +7,7 @@ import { AuthenticationService } from './../services/authentication.service';
 import { HTTPStatusCode, ApiErrorCode, Messages } from './constant.enum';
 import { ApiResponse } from '../responses/ApiResponse';
 import { ToastService } from '../services/toast.service';
+import { ResponseApi } from '../responses/ResponseApi';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -30,10 +31,10 @@ export class ErrorInterceptor implements HttpInterceptor {
             }),
 
             catchError((error: HttpErrorResponse) => {
-                let body = <ApiResponse<any>>error.error;
+                let body = <ResponseApi>error.error;
                 switch (error.status) {
                     case HTTPStatusCode.bad_request:
-                        this.toastService.show(Messages[body!.errorCode], {
+                        this.toastService.show(Messages[body!.message], {
                             classname: 'bg-danger text-white',
                             delay: 5000 ,
                             autohide: true,
@@ -41,11 +42,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                         });
                         break
                     case HTTPStatusCode.Unauthorized:
-                        this.toastService.show(body!.messageCode, {
+                        this.toastService.show(body!.message, {
                             classname: 'bg-danger text-white',
                             delay: 10000 ,
                             autohide: true,
-                            headertext: body!.errorCode
+                            headertext: body!.message
                         });
                         this.authenticationService.logout();
                         location.reload(true)
@@ -53,7 +54,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     case 422:
                         break
                     default:
-                        this.toastService.show(Messages.E000, {
+                        this.toastService.show(body.message, {
                             classname: 'bg-danger text-white',
                             delay: 5000 ,
                             autohide: true,

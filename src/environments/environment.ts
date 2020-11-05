@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   development: true,
-  base_url_api: 'http://localhost:8000/api/v1'
+  base_url_api: 'http://test.vietmix.vn:8000/api/v1'
 };
 
 /*

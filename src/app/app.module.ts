@@ -8,8 +8,6 @@ import { HeaderComponent } from './layouts/shares/header/header.component';
 import { DescriptionComponent } from './conponents/description/description.component';
 import { FooterComponent } from './layouts/shares/footer/footer.component';
 import { MenuComponent } from './layouts/shares/menu/menu.component';
-import { UpgrateComponent } from './pages/upgrate/upgrate.component';
-import { NotificationComponent } from './pages/notification/notification.component';
 import { RouterModule } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 import { FormsModule } from '@angular/forms';
@@ -22,12 +20,9 @@ import { NotFoundComponent } from './pages/errors/not-found/not-found.component'
 import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastComponent } from './components/toast/toast.component';
 import { ToastService } from './services/toast.service';
-import { HistoriesComponent } from './pages/histories/histories.component';
 import { DotdotdotPipe } from './pipes/dotdotdot.pipe';
 import { PaymentMomoComponent } from './pages/payment-momo/payment-momo.component';
 import { PaymentMomoConfirmComponent } from './pages/payment-momo-confirm/payment-momo-confirm.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { ConfirmRegisterComponent } from './pages/confirm-register/confirm-register.component';
 
 @NgModule({
   declarations: [
@@ -37,18 +32,13 @@ import { ConfirmRegisterComponent } from './pages/confirm-register/confirm-regis
     DescriptionComponent,
     FooterComponent,
     MenuComponent,
-    UpgrateComponent,
-    NotificationComponent,
     DefaultComponent,
     LoginComponent,
     NotFoundComponent,
     ToastComponent,
-    HistoriesComponent,
     DotdotdotPipe,
     PaymentMomoComponent,
     PaymentMomoConfirmComponent,
-    RegisterComponent,
-    ConfirmRegisterComponent
   ],
   imports: [
     BrowserModule,
